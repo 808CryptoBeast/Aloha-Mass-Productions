@@ -1,0 +1,122 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+
+#darkModeToggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: #222;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: url('hero.jpg') center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.cta-btn {
+    background: #ff6600;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.cta-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Features Section */
+.features {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    gap: 20px;
+}
+
+.feature {
+    width: 300px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.feature img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Parallax Section */
+.parallax {
+    background: url('parallax.jpg') center/cover fixed;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+
+/* Chatbot */
+.chatbot {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+}
+
+.chatbox {
+    display: none;
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px;
+}
+
+#chatToggle {
+    background: #ff6600;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature {
+        width: 90%;
+    }
+}
