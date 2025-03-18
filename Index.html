@@ -3,38 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aloha Mass Productions (AMP) is a movement blending culture, technology, and fashion.">
     <title>Aloha Mass Productions (AMP)</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Dark Mode Toggle -->
-    <button id="darkModeToggle">🌙</button>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="components/pics/AMP Tiki.jpg" alt="AMP Logo" id="logo" class="logo-button">
+                <div class="dropdown" id="dropdown">
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><button id="darkModeToggle"><span class="icon">🌙</span> Toggle Dark Mode</button></li>
+                        <li><button id="colorModeToggle"><span class="icon">🎨</span> Toggle Color Mode</button></li>
+                    </ul>
+                </div>
+            </div>
+            <nav>
+                <form action="https://www.google.com/search" method="get" class="search-bar">
+                    <input type="text" name="q" placeholder="Search Google...">
+                    <button type="submit">Search</button>
+                </form>
+            </nav>
+        </div>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="overlay">
             <h1>Aloha Mass Productions</h1>
             <p>Amplify Connection. Amplify Culture. Amplify Innovation.</p>
-            <a href="#products" class="cta-btn">Explore</a>
+            <a href="#" id="exploreBtn" class="cta-btn">Explore</a>
+        </div>
+    </section>
+
+    <!-- Introduction and Vision Section -->
+    <section class="intro-vision" id="introVision">
+        <div class="container">
+            <img src="components/AMP RYB.jpg" alt="AMP Vision" class="mission-image">
+            <h2>Our Vision</h2>
+            <p>To blend ancient wisdom with modern technology to create a sustainable and innovative future.</p>
+            <button id="closeBtn" class="cta-btn">Back</button>
         </div>
     </section>
 
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="feature">
-            <img data-src="feature1.jpg" alt="Feature 1">
+            <img data-src="feature1.jpg" alt="Technology-driven feature" loading="lazy">
             <h3>Technology-Driven</h3>
             <p>Blockchain-backed authenticity & NFT perks.</p>
         </div>
         <div class="feature">
-            <img data-src="feature2.jpg" alt="Feature 2">
+            <img data-src="feature2.jpg" alt="Sustainable and ethical feature" loading="lazy">
             <h3>Sustainable & Ethical</h3>
             <p>Transparent sourcing & fair trade practices.</p>
         </div>
         <div class="feature">
-            <img data-src="feature3.jpg" alt="Feature 3">
+            <img data-src="feature3.jpg" alt="Cultural innovation feature" loading="lazy">
             <h3>Cultural Innovation</h3>
             <p>Blending ancient wisdom with modern tech.</p>
         </div>
@@ -47,7 +80,7 @@
 
     <!-- Chatbot -->
     <div class="chatbot">
-        <button id="chatToggle">💬 Chat</button>
+        <button id="chatToggle" aria-label="Open chat">💬</button>
         <div class="chatbox" id="chatbox">
             <div class="chat-content" id="chatContent">
                 <p>👋 Aloha! How can I assist you?</p>
