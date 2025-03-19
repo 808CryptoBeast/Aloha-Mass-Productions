@@ -94,11 +94,11 @@ document.addEventListener("DOMContentLoaded", () => {
     exploreBtn.addEventListener("click", (e) => {
         e.preventDefault();
         heroSection.classList.add("hidden");
-        introVisionSection.style.display = "block";
+        introVisionSection.classList.add("visible");
     });
 
     closeBtn.addEventListener("click", () => {
         heroSection.classList.remove("hidden");
-        introVisionSection.style.display = "none";
+        introVisionSection.classList.remove("visible");
     });
 });

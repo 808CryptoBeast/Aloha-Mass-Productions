@@ -161,19 +161,45 @@ header {
     display: none;
     background: #000;
     color: #fff;
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.intro-vision .container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.mission-image {
     width: 100%;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    height: 100vh;
+    position: fixed; /* Use fixed positioning to overlay on top of the hero section */
+    top: 0;
+    left: 0;
+    z-index: 999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 50px 20px;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(100%);
+    border-radius: 20px; /* Rounded edges */
+}
+
+.intro-vision.visible {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.vision-content, .roadmap-content {
+    margin: 20px 0;
+}
+
+.roadmap-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.roadmap-content li {
+    margin: 10px 0;
+}
+
+/* Mission Image with Rounded Edges */
+.mission-image {
+    border-radius: 20px; /* Rounded edges */
 }
 
 /* Features Section */
@@ -181,35 +207,55 @@ header {
     display: flex;
     justify-content: center;
     padding: 50px;
-    gap: 20px;
-    background: #000;
+    gap: 1rem;
+    background: #000000fb;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
 }
 
 .feature {
-    width: 300px;
+    width: 10rem;
+    height: 20rem;
     text-align: center;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s;
     background: #333;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    filter: brightness(0);
+    border-radius: 20px; /* Rounded edges */
 }
 
 .feature img {
     width: 100%;
-    border-radius: 10px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px; /* Rounded edges */
 }
 
-.feature h3 {
-    margin-top: 15px;
-    font-size: 1.5rem;
+.feature:hover {
+    filter: brightness(1);
+    transform: translateZ(200px);
 }
 
-.feature p {
-    margin-top: 10px;
-    font-size: 1rem;
+.feature:hover + * {
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(40deg);
+}
+
+.feature:hover + * + * {
+    filter: brightness(0.4);
+    transform: translateZ(70px) rotateY(20deg);
+}
+
+.feature:has(+ *:hover) {
+    filter: brightness(0.6);
+    transform: translateZ(150px) rotateY(-40deg);
+}
+
+.feature:has(+ * + *:hover) {
+    filter: brightness(0.4);
+    transform: translateZ(70px) rotateY(-20deg);
 }
 
 /* Parallax Section */
