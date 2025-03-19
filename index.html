@@ -4,25 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Aloha Mass Productions (AMP) is a movement blending culture, technology, and fashion.">
+    <meta name="keywords" content="Aloha, Mass Productions, AMP, culture, technology, fashion">
+    <meta name="author" content="808CryptoBeast">
     <title>Aloha Mass Productions (AMP)</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
 </head>
 <body>
-
     <!-- Header and Navigation -->
     <header>
         <div class="container">
             <div class="logo">
                 <img src="components/pics/AMP Tiki.jpg" alt="AMP Logo" id="logo" class="logo-button">
-                <div class="dropdown" id="dropdown">
+                <div class="dropdown" id="dropdown" role="menu">
                     <ul>
                         <li><a href="#features">Features</a></li>
                         <li><a href="#products">Products</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        <li><button id="darkModeToggle"><span class="icon">🌙</span> Toggle Dark Mode</button></li>
-                        <li><button id="colorModeToggle"><span class="icon">🎨</span> Toggle Color Mode</button></li>
+                        <li><button id="darkModeToggle" aria-label="Toggle Dark Mode"><span class="icon">🌙</span> Toggle Dark Mode</button></li>
+                        <li><button id="colorModeToggle" aria-label="Toggle Color Mode"><span class="icon">🎨</span> Toggle Color Mode</button></li>
                     </ul>
                 </div>
             </div>
@@ -36,7 +38,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <section class="hero" id="hero" role="banner">
         <div class="overlay">
             <h1>Aloha Mass Productions</h1>
             <p>Amplify Connection. Amplify Culture. Amplify Innovation.</p>
@@ -50,9 +52,9 @@
             <div class="vision-content">
                 <img src="components/AMP RYB.jpg" alt="AMP Vision" class="mission-image">
                 <h2>Our Vision</h2>
-                <p>We envision a future where the holistic knowledge of our ancestors seamlessly interconnects with modern innovation, fostering a world united by the Aloha we share. Through our brand, we cultivate a deeper awareness of our interconnected existence, empowering individuals to embrace both tradition and progress as we move forward into the future together.</p>
+                <p>We envision a future where the holistic knowledge of our ancestors seamlessly interconnects with modern innovation, fostering a world united by the Aloha we share. Through our brand, we aim to inspire and empower communities globally.</p>
                 <h2>Our Mission</h2>
-                <p>Our Mission is to embody and share the true essence of Aloha-an unwavering dedication to living with love, respect, and deep connection. Aloha is not just a greeting; it is a way of being, a commitment to understanding oneself, others, and the cosmos. By bridging ancestral wisdom with cutting-edge technology, we create a platform for meaningful engagement, offering diverse products, wearables, and access to knowledge about emerging tech and asset classes such as blockchain and cryptography.</p>
+                <p>Our Mission is to embody and share the true essence of Aloha—an unwavering dedication to living with love, respect, and deep connection. Aloha is not just a greeting; it is a way of life that we are committed to preserving and promoting.</p>
             </div>
             <button id="closeBtn" class="cta-btn">Back</button>
         </div>
