@@ -3,29 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const darkModeToggle = document.getElementById("darkModeToggle");
     const colorModeToggle = document.getElementById("colorModeToggle");
     const body = document.body;
-    const introVisionSection = document.getElementById("introVision");
+    const amplifySection = document.getElementById("amplify");
 
     darkModeToggle.addEventListener("click", () => {
         body.classList.toggle("dark-mode");
         body.classList.remove("color-mode");
-        updateIntroVisionBackground();
     });
 
     colorModeToggle.addEventListener("click", () => {
         body.classList.toggle("color-mode");
         body.classList.remove("dark-mode");
-        updateIntroVisionBackground();
     });
-
-    function updateIntroVisionBackground() {
-        if (body.classList.contains("dark-mode")) {
-            introVisionSection.style.background = "#121212";
-        } else if (body.classList.contains("color-mode")) {
-            introVisionSection.style.background = "#004d4d";
-        } else {
-            introVisionSection.style.background = "#000";
-        }
-    }
 
     // Lazy Loading Images
     const lazyImages = document.querySelectorAll("img[data-src]");
@@ -102,19 +90,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Explore Button Functionality
     const exploreBtn = document.getElementById("exploreBtn");
     const heroSection = document.getElementById("hero");
+    const introVisionSection = document.getElementById("introVision");
     const closeBtn = document.getElementById("closeBtn");
 
     exploreBtn.addEventListener("click", (e) => {
         e.preventDefault();
         heroSection.classList.add("hidden");
+        amplifySection.classList.add("hidden");
         introVisionSection.classList.add("visible");
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top
     });
 
     closeBtn.addEventListener("click", () => {
         heroSection.classList.remove("hidden");
+        amplifySection.classList.remove("hidden");
         introVisionSection.classList.remove("visible");
     });
-
-    // Initial setup for intro-vision background based on current mode
-    updateIntroVisionBackground();
 });
