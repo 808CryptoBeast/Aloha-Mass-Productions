@@ -1,21 +1,12 @@
 :root {
+    --transition-duration: 0.3s;
     --primary-color: #ff6600;
     --secondary-color: #e65c00;
     --dark-bg: #000000;
     --dark-bg-alt: #333;
     --text-color: #fff;
-    --transition-duration: 0.3s;
-    --dark-mode-bg: #121212;
-    --color-mode-bg: #004d4d;
-    --feature-bg: #000000;
-    --dark-mode-feature-bg: #1e1e1e;
-    --color-mode-feature-bg: #006666;
-    --feature-accent1: #ff4500;
-    --feature-accent2: #ff8c00;
-    --feature-accent3: #ffa500;
-    --feature-accent4: #ffd700;
-    --feature-accent5: #ff69b4;
     --dropdown-hover-bg: #444;
+    --nav-height: 70px;
 }
 
 body {
@@ -40,6 +31,7 @@ html {
     margin: 0 auto;
     padding: 0 20px;
     position: relative;
+    height: var(--nav-height);
 }
 
 .logo {
@@ -53,7 +45,35 @@ html {
     cursor: pointer;
 }
 
-.logo-button, .cta-btn, #chatToggle {
+nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color var(--transition-duration);
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+.logo-button, .cta-btn {
     display: inline-block;
     padding: 10px;
     border: 2px solid var(--primary-color);
@@ -63,22 +83,26 @@ html {
     cursor: pointer;
 }
 
-.logo-button:hover, .cta-btn:hover, #chatToggle:hover {
+.logo-button:hover, .cta-btn:hover {
     background: var(--primary-color);
-    border-color: var (--secondary-color);
+    border-color: var(--secondary-color);
     transform: scale(1.05);
 }
 
 .dropdown {
     display: none;
     position: absolute;
-    top: 60px;
+    top: var(--nav-height);
     right: 0;
     background: var(--dark-bg-alt);
     color: var(--text-color);
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 1001;
+}
+
+.logo:hover .dropdown {
+    display: block;
 }
 
 .dropdown ul {
@@ -131,30 +155,45 @@ html {
     background: var(--secondary-color);
 }
 
-.dark-mode {
-    background: var(--dark-mode-bg);
-    color: var(--text-color);
+.sticky-header {
+    position: sticky;
+    top: 0;
+    background: var(--dark-bg);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.dark-mode .feature {
-    background: var(--dark-mode-feature-bg);
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: var(--nav-height);
+        right: 0;
+        background: var(--dark-bg-alt);
+        width: 100%;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    nav a {
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 24px;
+    }
 }
 
-.dark-mode .amplify {
-    background: var(--dark-mode-bg);
-}
-
-.color-mode {
-    background: var(--color-mode-bg);
-    color: var(--text-color);
-}
-
-.color-mode .feature {
-    background: var(--color-mode-feature-bg);
-}
-
-.color-mode .amplify {
-    background: var(--color-mode-bg);
+.menu-toggle {
+    display: none;
 }
 
 .hero {
@@ -187,9 +226,9 @@ html {
     width: 100%;
     height: auto;
     min-height: 10vh;
-    background:  rgba(51, 51, 51, 0);
+    background: rgba(51, 51, 51, 0);
     text-align: center;
-    color: var(--text-color);
+    color: #fff;
     font-family: 'Roboto';
     font-size: 36px;
     font-weight: 100;
@@ -323,8 +362,8 @@ html {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 25px;
-    background: var(--primary-color);
-    color: var(--text-color);
+    background: #ff6600;
+    color: #fff;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
@@ -335,8 +374,8 @@ html {
 .intro-vision {
     opacity: 0;
     visibility: hidden;
-    background: var(--dark-bg);
-    color: var(--text-color);
+    background: #000000;
+    color: #fff;
     width: 100%;
     height: auto;
     top: 0;
@@ -380,68 +419,48 @@ html {
 
 .features {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     padding: 50px;
     gap: 1rem;
-    background: var(--dark-bg);
+    background: #000000;
     transform-style: preserve-3d;
     transform: perspective(1000px);
     transition: background var(--transition-duration) ease-in-out;
 }
 
 .dark-mode .features {
-    background: var(--dark-mode-bg);
-}
-
-.color-mode .features {
-    background: var(--color-mode-bg);
+    background: #121212;
 }
 
 .feature {
-    width: 10rem;
-    height: 20rem;
+    flex: 1 1 calc(20% - 1rem);
+    max-width: calc(20% - 1rem);
     text-align: center;
-    opacity: 1;
+    opacity: 1; /* Ensure features are visible */
     transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s, background-color var(--transition-duration) ease-in-out;
+    transition: opacity 0.5s ease, transform 0.5s ease, background-color var(--transition-duration) ease-in-out;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter:brightness(0);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 20px;
-    background: var(--feature-bg);
+    background: #000000;
+    filter: brightness(0);
+}
+
+.feature:hover {
+    opacity: 1;
+    transform: translateZ(20px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .dark-mode .feature {
-    background: var(--dark-mode-feature-bg);
-}
-
-.color-mode .feature {
-    background: var(--color-mode-feature-bg);
-}
-
-.feature:nth-child(1) {
-    background: var(--feature-accent1);
-}
-
-.feature:nth-child(2) {
-    background: var(--feature-accent2);
-}
-
-.feature:nth-child(3) {
-    background: var(--feature-accent3);
-}
-
-.feature:nth-child(4) {
-    background: var(--feature-accent4);
-}
-
-.feature:nth-child(5) {
-    background: var(--feature-accent5);
+    background: #1e1e1e;
+    filter: brightness(0.6); /* Dimmed effect for dark mode */
 }
 
 .feature h3, .feature p {
@@ -485,32 +504,6 @@ html {
     z-index: 2;
 }
 
-.chatbot {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    z-index: 1000;
-}
-
-.chatbox {
-    display: none;
-    background: var(--dark-bg-alt);
-    padding: 10px;
-    border-radius: 10px;
-    width: 250px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-#chatToggle {
-    background: linear-gradient(45deg, var(--primary-color), #ff4500);
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    font-size: 24px;
-    color: var(--text-color);
-    transition: background var(--transition-duration), transform var(--transition-duration);
-}
-
 @media (max-width: 768px) {
     .features {
         flex-direction: column;
@@ -519,6 +512,7 @@ html {
 
     .feature {
         width: 90%;
+        max-width: 90%;
     }
 }
 

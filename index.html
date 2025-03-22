@@ -15,7 +15,7 @@
 </head>
 <body>
     <!-- Header and Navigation -->
-    <header>
+    <header class="sticky-header">
         <div class="header-container">
             <div class="logo">
                 <img src="components/pics/AMP Tiki.jpg" alt="AMP Logo" id="logo" class="logo-button">
@@ -30,18 +30,25 @@
                 </div>
             </div>
             <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
                 <form action="https://www.google.com/search" method="get" class="search-bar">
                     <input type="text" name="q" placeholder="Search Google...">
                     <button type="submit">Search</button>
                 </form>
             </nav>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="hero" role="banner">
         <div class="overlay">
-            <h1></h1>
+            <h1>Welcome to Aloha Mass Productions</h1>
         </div>
     </section>
 
@@ -101,21 +108,9 @@
         </div>
     </section>
 
-    <!-- Parallax Section -->
-    <section class="parallax">
+    <!-- Parallax Section as Footer -->
+    <footer class="parallax">
         <h2>Redefining Fashion & Community</h2>
-    </section>
-
-    <!-- Chatbot -->
-    <div class="chatbot">
-        <button id="chatToggle" aria-label="Open chat">💬</button>
-        <div class="chatbox" id="chatbox">
-            <div class="chat-content" id="chatContent">
-                <p>👋 Aloha! How can I assist you?</p>
-            </div>
-            <input type="text" id="chatInput" placeholder="Type a message...">
-        </div>
-    </div>
-
+    </footer>
 </body>
 </html>

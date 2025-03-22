@@ -41,27 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     features.forEach(feature => revealObserver.observe(feature));
 
-    // Chatbot Toggle
-    const chatToggle = document.getElementById("chatToggle");
-    const chatbox = document.getElementById("chatbox");
-    const chatInput = document.getElementById("chatInput");
-    const chatContent = document.getElementById("chatContent");
-
-    chatToggle.addEventListener("click", () => {
-        chatbox.style.display = chatbox.style.display === "block" ? "none" : "block";
-    });
-
-    chatInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-            const userMsg = chatInput.value;
-            chatContent.innerHTML += `<p><strong>You:</strong> ${userMsg}</p>`;
-            chatInput.value = "";
-            setTimeout(() => {
-                chatContent.innerHTML += `<p><strong>Bot:</strong> Aloha! I'll get back to you soon. 🌺</p>`;
-            }, 1000);
-        }
-    });
-
     // Smooth Scrolling for Internal Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
