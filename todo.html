@@ -9,16 +9,29 @@
     <script src="app.js" defer></script>
 </head>
 <body>
+    <header class="navbar">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="todo.html">Todo App</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button class="back-button" onclick="window.location.href='index.html'">Back</button></li>
+            </ul>
+        </nav>
+    </header>
     <h1>Todo App</h1>
     <div class="wrapper">
-        <form>
-            <input id="todo-input" type="text" 
-            placeholder="write anything and hit enter to add" autocomplete="off">
-            <button id="add-button">ADD</button>
+        <form id="todo-form">
+            <input id="todo-input" type="text" placeholder="write anything and hit enter to add" autocomplete="off">
+            <button id="add-button" type="submit">ADD</button>
         </form>
         <ul id="todo-list">
             <!-- Todo items will be dynamically added here -->
         </ul>
     </div>
+    <footer>
+        <p>Aloha Mass Productions</p>
+    </footer>
 </body>
 </html>
