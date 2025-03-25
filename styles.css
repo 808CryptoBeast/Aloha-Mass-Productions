@@ -7,11 +7,10 @@
     --text-color: #fff;
     --dropdown-hover-bg: #444;
     --nav-height: 70px;
-    /* Sidebar colors */
     --base-clr: #11121a;
     --line-clr: #42434a;
     --hover-clr: #222533;
-    --sidebar-accent-clr: #5e63ff;
+    --sidebar-accent-clr: var(--primary-color); /* Aligned with site theme */
     --secondary-text-clr: #b0b3c1;
 }
 
@@ -23,7 +22,7 @@ body {
     background: var(--dark-bg);
     color: var(--text-color);
     transition: background var(--transition-duration) ease-in-out, color var(--transition-duration) ease-in-out;
-    display: flex; /* Flex layout for sidebar */
+    display: flex;
     min-height: 100vh;
 }
 
@@ -31,7 +30,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Sidebar Styles */
 #sidebar {
     box-sizing: border-box;
     height: 100vh;
@@ -73,7 +71,7 @@ html {
     fill: var(--sidebar-accent-clr);
 }
 
-#sidebar a {
+#sidebar a, #sidebar button {
     border-radius: .5em;
     padding: .85em;
     text-decoration: none;
@@ -81,6 +79,11 @@ html {
     display: flex;
     align-items: center;
     gap: 1em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
 }
 
 #sidebar svg {
@@ -88,11 +91,11 @@ html {
     fill: var(--text-color);
 }
 
-#sidebar a span {
+#sidebar a span, #sidebar button span {
     flex-grow: 1;
 }
 
-#sidebar a:hover {
+#sidebar a:hover, #sidebar button:hover {
     background-color: var(--hover-clr);
 }
 
@@ -118,7 +121,7 @@ html {
 
 .logo-button:hover a {
     transform: scale(1.1);
-    box-shadow: 0 0 10px #5e63ff, 0 0 20px #5e63ff, 0 0 30px #5e63ff;
+    box-shadow: 0 0 10px var(--sidebar-accent-clr), 0 0 20px var(--sidebar-accent-clr), 0 0 30px var(--sidebar-accent-clr);
 }
 
 .logo-button img {
@@ -127,7 +130,6 @@ html {
     border-radius: 50%;
 }
 
-/* Main Content */
 .content {
     flex-grow: 1;
     display: flex;
@@ -135,7 +137,6 @@ html {
     padding: 20px;
 }
 
-/* Hero Section */
 .hero {
     height: 100vh;
     background: url('components/AMP Rabbit Island.jpg') center/contain no-repeat;
@@ -146,7 +147,7 @@ html {
     text-align: center;
     position: relative;
     overflow: hidden;
-    margin-top: 0; /* Removed margin-top since header is gone */
+    margin-top: 0;
     transition: opacity var(--transition-duration) ease-in-out, transform var(--transition-duration) ease-in-out;
 }
 
@@ -155,7 +156,6 @@ html {
     opacity: 0;
 }
 
-/* Amplify Section */
 .amplify {
     display: flex;
     flex-direction: column;
@@ -241,7 +241,7 @@ html {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 25px;
-    background: #ff6600;
+    background: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -250,7 +250,6 @@ html {
     position: relative;
 }
 
-/* Intro Vision */
 .intro-vision {
     opacity: 0;
     visibility: hidden;
@@ -297,7 +296,6 @@ html {
     height: auto;
 }
 
-/* Features */
 .features {
     display: flex;
     flex-wrap: wrap;
@@ -320,7 +318,7 @@ html {
     text-align: center;
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.5s ease, background-color var(--transition-duration) ease-in-out;
+    transition: opacity 0.5s ease, transform 0.5s ease, background-color var(--transition-duration) ease-in-out, filter 0.3s ease;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -330,7 +328,7 @@ html {
     justify-content: flex-end;
     padding: 20px;
     background: #000000;
-    filter: brightness(0);
+    filter: brightness(0.6);
 }
 
 .feature:hover {
@@ -345,6 +343,19 @@ html {
     filter: brightness(0.6);
 }
 
+.color-mode {
+    --primary-color: #00ccff;
+    --secondary-color: #0099cc;
+}
+
+.color-mode .amplify .cta-btn {
+    background: var(--primary-color);
+}
+
+.color-mode .feature:hover {
+    box-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+}
+
 .feature h3, .feature p {
     margin: 0;
     background: rgba(0, 0, 0, 0.445);
@@ -352,7 +363,6 @@ html {
     border-radius: 10px;
 }
 
-/* Parallax Footer */
 .parallax {
     background: url('parallax.jpg') center/cover fixed;
     height: 300px;
@@ -381,7 +391,6 @@ html {
     z-index: 2;
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
     #sidebar {
         height: 60px;
@@ -404,15 +413,18 @@ html {
     #sidebar ul li {
         height: 100%;
     }
-    #sidebar ul a {
+    #sidebar ul a, #sidebar ul button {
         width: 60px;
         height: 60px;
         padding: 0;
         border-radius: 0;
         justify-content: center;
     }
-    #sidebar ul li span, #sidebar ul li:first-child {
+    #sidebar ul li span {
         display: none;
+    }
+    #sidebar ul li:first-child {
+        display: none; /* Hide logo on mobile */
     }
     .content {
         padding: 10px;
