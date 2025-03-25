@@ -109,6 +109,7 @@ form {
   transition: 200ms ease;
 }
 
+/* Update these styles in your style.css file */
 .progress-bar-container {
   width: 100%;
   background-color: var(--secondary-color);
@@ -116,29 +117,29 @@ form {
   overflow: hidden;
   margin: 10px 0;
   position: relative;
-  height: 10px;
-  display: flex; /* Added to align percentage */
-  align-items: center; /* Center vertically */
+  height: 20px; /* Adjusted height */
+  display: flex; 
+  align-items: center; 
 }
 
 .progress-bar {
-  width: 0;
   height: 100%;
-  background-color: var(--accent-color);
-  transition: width 0.3s;
+  width: 0;
+  background: linear-gradient(90deg, red, yellow, green); /* Gradient for dynamic color change */
+  transition: width 0.3s, background-color 0.3s; /* Smooth transition */
 }
 
 .progress-percentage {
   position: absolute;
-  top: 50%; /* Center vertically */
-  right: 5px; /* Closer to edge */
-  transform: translateY(-50%); /* Adjust for true centering */
-  font-size: 0.8rem; /* Slightly smaller for fit */
-  color: var(--text-color); /* White for contrast */
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center horizontally and vertically */
+  font-size: 0.8rem; 
+  color: var(--text-color); 
   font-weight: 600;
-  padding: 0 5px; /* Padding for readability */
-  background-color: rgba(16, 17, 20, 0.7); /* Semi-transparent background */
-  border-radius: 3px; /* Soft edges */
+  padding: 0 5px; 
+  background-color: rgba(16, 17, 20, 0.7); 
+  border-radius: 3px; 
 }
 
 .sub-tasks {
@@ -266,4 +267,34 @@ footer {
       margin-top: 50px;
       font-size: 15vw;
   }
+}
+
+/* Add this CSS to your style.css file */
+.progress-bar-container {
+  position: relative;
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-bar {
+  height: 20px;
+  width: 0;
+  background-color: #4caf50;
+  text-align: center;
+  line-height: 20px;
+  color: white;
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.progress-percentage {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-weight: bold;
 }
