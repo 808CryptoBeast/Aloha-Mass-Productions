@@ -156,9 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = `${progress}%`;
         progressPercentage.textContent = `${Math.round(progress)}%`;
         // Change color based on progress
-        if (progress < 33) {
+        if (progress < 25) {
             progressBar.style.backgroundColor = 'red';
-        } else if (progress < 66) {
+        } else if (progress < 50) {
+            progressBar.style.backgroundColor = 'orange';
+        } else if (progress < 80) {
             progressBar.style.backgroundColor = 'yellow';
         } else {
             progressBar.style.backgroundColor = 'green';
