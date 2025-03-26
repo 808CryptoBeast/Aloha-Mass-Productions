@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop Aloha Mass Productions (AMP) apparel and accessories - shirts, hats, stickers, and more.">
+    <meta name="keywords" content="Aloha, AMP, apparel, Hawaiian culture, blockchain, NFT">
+    <meta name="author" content="808CryptoBeast">
+    <title>AMP Marketplace</title>
+    <link rel="stylesheet" href="marketplace.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
+    <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
+    <script src="sidebar.js" defer></script>
+    <script src="marketplace.js" defer></script>
+    <!-- Stripe for traditional payments -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="close">
+        <ul>
+            <li class="logo-button">
+                <a href="index.html" id="logo-toggle" class="logo">
+                    <img src="components/pics/AMP Tiki.jpg" alt="AMP Logo">
+                </a>
+            </li>
+            <li><a href="index.html#home" data-tooltip="Home"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></a></li>
+            <li><a href="marketplace.html" data-tooltip="Shop"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zM7 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm5-14l6 6H6l6-6z"/></svg><span>Shop</span></a></li>
+            <li><a href="index.html#rewards" data-tooltip="Rewards"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93s3.05-7.44 7-7.93V17.93zm2-13.86c3.95.49 7 3.85 7 7.93s-3.05 7.44-7 7.93V4.07z"/></svg><span>Rewards</span></a></li>
+            <li><a href="index.html#contact" data-tooltip="Contact"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 8V7l-3 2-2-1-4 4-4-4-2 1-3-2v1L12 13l9-5z"/></svg><span>Contact</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Marketplace Section -->
+        <section id="marketplace" class="marketplace container">
+            <h1>Shop Ke Aloha Collection</h1>
+            <div class="drops">
+                <div class="drop-item limited" data-id="4" data-price="49.99">
+                    <h2>Limited Edition Tiki Tee</h2>
+                    <p class="countdown" data-end="2025-04-01T00:00:00Z">Drop Ends In: <span></span></p>
+                    <p class="price">$49.99</p>
+                    <button class="pre-order cta-btn">Pre-Order</button>
+                </div>
+            </div>
+            <div class="product-grid">
+                <div class="product item" data-id="1" data-price="29.99">
+                    <img src="components/shirt1.jpg" alt="Aloha Shirt">
+                    <h3>Aloha Shirt</h3>
+                    <p class="price">$29.99</p>
+                    <p class="stock">In Stock: <span>10</span></p>
+                    <button class="customize cta-btn">Customize</button>
+                    <button class="add-to-cart cta-btn">Add to Cart</button>
+                </div>
+                <div class="product item" data-id="2" data-price="19.99">
+                    <img src="components/hat1.jpg" alt="AMP Hat">
+                    <h3>AMP Hat</h3>
+                    <p class="price">$19.99</p>
+                    <p class="stock">In Stock: <span>15</span></p>
+                    <button class="customize cta-btn">Customize</button>
+                    <button class="add-to-cart cta-btn">Add to Cart</button>
+                </div>
+                <div class="product item" data-id="3" data-price="4.99">
+                    <img src="components/sticker1.jpg" alt="Aloha Sticker">
+                    <h3>Aloha Sticker</h3>
+                    <p class="price">$4.99</p>
+                    <p class="stock">In Stock: <span>50</span></p>
+                    <button class="add-to-cart cta-btn">Add to Cart</button>
+                </div>
+            </div>
+            <div class="bundle-deals">
+                <h3>ʻOhana Bundles</h3>
+                <div class="bundle" data-id="bundle1" data-price="49.99">
+                    <p>Shirt + Hat Bundle - <span class="price">$49.99</span> (Save 10%)</p>
+                    <button class="add-bundle cta-btn">Add Bundle</button>
+                </div>
+            </div>
+            <div id="cart" class="cart">
+                <h3>Kāu Kāleka (Your Cart)</h3>
+                <ul id="cart-items"></ul>
+                <p>Total: <span id="cart-total">$0.00</span></p>
+                <button id="checkout" class="cta-btn">Checkout</button>
+                <button id="clear-cart" class="cta-btn secondary">Clear Cart</button>
+                <div class="payment-options">
+                    <button id="stripe-pay" class="cta-btn">Pay with Card</button>
+                    <button id="xrpl-pay" class="cta-btn">Pay with XRPL</button>
+                </div>
+                <div id="referral-link">Refer a friend: <a href="#">amp.aloha/ref123</a></div>
+            </div>
+            <div id="customize-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">×</span>
+                    <h3> Your Design</h3>
+                    <canvas id="customize-canvas" width="300" height="300"></canvas>
+                    <input type="color" id="color-picker">
+                    <button id="save-custom" class="cta-btn">Save Design</button>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
