@@ -1,29 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('app.js loaded');
 
-    const todoForm = document.getElementById('todo-form');
-    const todoInput = document.getElementById('todo-input');
-    const addButton = document.getElementById('add-button');
-    const todoListUL = document.getElementById('todo-list');
-    const notesInput = document.getElementById('task-notes');
-    const priorityInput = document.getElementById('task-priority');
-    const timeInput = document.getElementById('task-time');
-    const statusInput = document.getElementById('task-status');
-    const toggleDetails = document.getElementById('toggle-details');
-    const formDetails = document.querySelector('.form-details');
+    /* === DOM ELEMENTS === */
+    const elements = {
+        todoForm: document.getElementById('todo-form'),
+        todoInput: document.getElementById('todo-input'),
+        addButton: document.getElementById('add-button'),
+        todoListUL: document.getElementById('todo-list'),
+        notesInput: document.getElementById('task-notes'),
+        priorityInput: document.getElementById('task-priority'),
+        timeInput: document.getElementById('task-time'),
+        statusInput: document.getElementById('task-status'),
+        toggleDetails: document.getElementById('toggle-details'),
+        formDetails: document.querySelector('.form-details')
+    };
 
-    if (!todoForm || !todoInput || !addButton || !todoListUL || !notesInput || !priorityInput || !timeInput || !statusInput || !toggleDetails || !formDetails) {
+    /* === INITIALIZATION === */
+    // Check for missing DOM elements
+    if (Object.values(elements).some(el => !el)) {
         console.error('Missing DOM elements:', {
-            todoForm: !!todoForm,
-            todoInput: !!todoInput,
-            addButton: !!addButton,
-            todoListUL: !!todoListUL,
-            notesInput: !!notesInput,
-            priorityInput: !!priorityInput,
-            timeInput: !!timeInput,
-            statusInput: !!statusInput,
-            toggleDetails: !!toggleDetails,
-            formDetails: !!formDetails
+            todoForm: !!elements.todoForm,
+            todoInput: !!elements.todoInput,
+            addButton: !!elements.addButton,
+            todoListUL: !!elements.todoListUL,
+            notesInput: !!elements.notesInput,
+            priorityInput: !!elements.priorityInput,
+            timeInput: !!elements.timeInput,
+            statusInput: !!elements.statusInput,
+            toggleDetails: !!elements.toggleDetails,
+            formDetails: !!elements.formDetails
         });
         return;
     }
@@ -33,52 +38,43 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Initial todos:', allTodos);
     updateTodoList();
 
-    todoForm.addEventListener('submit', (e) => {
+    /* === EVENT LISTENERS === */
+    elements.todoForm.addEventListener('submit', (e) => {
         e.preventDefault();
         addTodo();
     });
 
-    addButton.addEventListener('click', (e) => {
+    elements.addButton.addEventListener('click', (e) => {
         e.preventDefault();
         addTodo();
     });
 
-    toggleDetails.addEventListener('click', () => {
-        formDetails.style.display = formDetails.style.display === 'none' ? 'block' : 'none';
-        toggleDetails.textContent = formDetails.style.display === 'none' ? 'Show Details' : 'Hide Details';
+    elements.toggleDetails.addEventListener('click', () => {
+        elements.formDetails.style.display = elements.formDetails.style.display === 'none' ? 'block' : 'none';
+        elements.toggleDetails.textContent = elements.formDetails.style.display === 'none' ? 'Show Details' : 'Hide Details';
     });
 
+    /* === TODO MANAGEMENT === */
     function addTodo() {
-        const todoText = todoInput.value.trim();
+        const todoText = elements.todoInput.value.trim();
         if (todoText.length > 0) {
             const todoObject = {
                 text: todoText,
                 completed: false,
                 subTasks: [],
-                notes: notesInput.value.trim(),
-                priority: priorityInput.value || 'medium', // Ensure priority is always set
-                timeEstimate: parseInt(timeInput.value) || 0,
-                status: statusInput.value || 'not-started'
+                notes: elements.notesInput.value.trim(),
+                priority: elements.priorityInput.value || 'medium',
+                timeEstimate: parseInt(elements.timeInput.value) || 0,
+                status: elements.statusInput.value || 'not-started'
             };
             allTodos.push(todoObject);
             sortTodosByPriority();
             updateTodoList();
             saveTodos();
-            todoInput.value = '';
-            notesInput.value = '';
-            timeInput.value = '';
-            statusInput.value = 'not-started';
-            formDetails.style.display = 'none';
-            toggleDetails.textContent = 'Show Details';
+            resetForm();
             console.log('Added todo:', todoObject);
         } else {
-            console.log('Empty input');
-            todoInput.placeholder = 'Please enter a task!';
-            todoInput.style.border = '1px solid red';
-            setTimeout(() => {
-                todoInput.placeholder = 'Write anything and hit enter to add';
-                todoInput.style.border = '';
-            }, 2000);
+            handleEmptyInput();
         }
     }
 
@@ -87,13 +83,37 @@ document.addEventListener('DOMContentLoaded', () => {
         allTodos.sort((a, b) => (priorityOrder[b.priority] || 2) - (priorityOrder[a.priority] || 2));
     }
 
+    function resetForm() {
+        elements.todoInput.value = '';
+        elements.notesInput.value = '';
+        elements.timeInput.value = '';
+        elements.statusInput.value = 'not-started';
+        elements.formDetails.style.display = 'none';
+        elements.toggleDetails.textContent = 'Show Details';
+    }
+
+    function handleEmptyInput() {
+        console.log('Empty input');
+        elements.todoInput.placeholder = 'Please enter a task!';
+        elements.todoInput.style.border = '1px solid red';
+        setTimeout(() => {
+            elements.todoInput.placeholder = 'Write anything and hit enter to add';
+            elements.todoInput.style.border = '';
+        }, 2000);
+    }
+
+    /* === TODO LIST RENDERING === */
     function updateTodoList() {
-        todoListUL.innerHTML = '';
+        elements.todoListUL.innerHTML = '';
         console.log('Updating list with:', allTodos);
         allTodos.forEach((todo, todoIndex) => {
             const todoItem = createTodoItem(todo, todoIndex);
-            todoListUL.appendChild(todoItem);
+            elements.todoListUL.appendChild(todoItem);
         });
+        updateProgressStats();
+    }
+
+    function updateProgressStats() {
         const totalTasks = allTodos.length;
         const completedTasks = allTodos.filter(todo => todo.completed).length;
         const overallProgress = totalTasks ? (completedTasks / totalTasks) * 100 : 0;
@@ -105,21 +125,44 @@ document.addEventListener('DOMContentLoaded', () => {
     function createTodoItem(todo, todoIndex) {
         const todoId = `todo-${todoIndex}`;
         const todoLI = document.createElement('li');
-        todoLI.className = `todo priority-${todo.priority || 'medium'} status-${todo.status || 'not-started'}`; // Fallbacks
+        todoLI.className = `todo priority-${todo.priority || 'medium'} status-${todo.status || 'not-started'}`;
 
-        const progressBarContainer = document.createElement('div');
-        progressBarContainer.className = 'progress-bar-container';
+        const progressBarContainer = createProgressBarContainer(todoIndex);
+        const todoHeader = createTodoHeader(todo, todoId, todoIndex);
+        const taskDetails = createTaskDetails(todo, todoIndex);
+        const expandButton = createExpandButton(taskDetails);
+        const subTaskUL = createSubTaskList(todo.subTasks, todoIndex);
+        const addSubTaskButton = createAddSubTaskButton(todoIndex);
+
+        todoLI.appendChild(todoHeader);
+        todoLI.appendChild(progressBarContainer);
+        todoLI.appendChild(taskDetails);
+        todoLI.appendChild(expandButton);
+        todoLI.appendChild(subTaskUL);
+        todoLI.appendChild(addSubTaskButton);
+
+        return todoLI;
+    }
+
+    /* === TODO ITEM COMPONENTS === */
+    function createProgressBarContainer(todoIndex) {
+        const container = document.createElement('div');
+        container.className = 'progress-bar-container';
         const progressBar = document.createElement('div');
         progressBar.className = 'progress-bar';
         const progressPercentage = document.createElement('span');
         progressPercentage.className = 'progress-percentage';
-        progressBarContainer.appendChild(progressBar);
-        progressBarContainer.appendChild(progressPercentage);
+        container.appendChild(progressBar);
+        container.appendChild(progressPercentage);
+        updateProgressBar(todoIndex, progressBar, progressPercentage);
+        return container;
+    }
 
-        const todoHeader = document.createElement('div');
-        todoHeader.className = 'todo-header';
-        const priorityDisplay = todo.priority ? todo.priority.charAt(0).toUpperCase() : 'M'; // Fallback to 'M' if undefined
-        todoHeader.innerHTML = `
+    function createTodoHeader(todo, todoId, todoIndex) {
+        const header = document.createElement('div');
+        header.className = 'todo-header';
+        const priorityDisplay = todo.priority ? todo.priority.charAt(0).toUpperCase() : 'M';
+        header.innerHTML = `
             <input type="checkbox" id="${todoId}" ${todo.completed ? 'checked' : ''}>
             <label class="custom-checkbox" for="${todoId}">
                 <svg fill="transparent" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
@@ -131,10 +174,23 @@ document.addEventListener('DOMContentLoaded', () => {
             </button>
         `;
 
-        const taskDetails = document.createElement('div');
-        taskDetails.className = 'task-details';
-        taskDetails.style.display = 'none';
-        taskDetails.innerHTML = `
+        header.querySelector('.delete-button').addEventListener('click', () => deleteTodoItem(todoIndex));
+        const checkbox = header.querySelector('input');
+        checkbox.addEventListener('change', () => {
+            allTodos[todoIndex].completed = checkbox.checked;
+            allTodos[todoIndex].status = checkbox.checked ? 'done' : 'in-progress';
+            saveTodos();
+            updateTodoList();
+        });
+
+        return header;
+    }
+
+    function createTaskDetails(todo, todoIndex) {
+        const details = document.createElement('div');
+        details.className = 'task-details';
+        details.style.display = 'none';
+        details.innerHTML = `
             <p><strong>Notes:</strong> ${todo.notes || 'None'}</p>
             <p><strong>Time:</strong> ${todo.timeEstimate ? `${todo.timeEstimate} mins` : 'N/A'}</p>
             <select class="status-select">
@@ -144,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </select>
         `;
 
-        const statusSelect = taskDetails.querySelector('.status-select');
+        const statusSelect = details.querySelector('.status-select');
         statusSelect.addEventListener('change', () => {
             allTodos[todoIndex].status = statusSelect.value;
             allTodos[todoIndex].completed = statusSelect.value === 'done';
@@ -152,27 +208,37 @@ document.addEventListener('DOMContentLoaded', () => {
             updateTodoList();
         });
 
-        const expandButton = document.createElement('button');
-        expandButton.className = 'expand-button';
-        expandButton.textContent = 'Details';
-        expandButton.addEventListener('click', () => {
+        return details;
+    }
+
+    function createExpandButton(taskDetails) {
+        const button = document.createElement('button');
+        button.className = 'expand-button';
+        button.textContent = 'Details';
+        button.addEventListener('click', () => {
             taskDetails.style.display = taskDetails.style.display === 'none' ? 'block' : 'none';
-            expandButton.textContent = taskDetails.style.display === 'none' ? 'Details' : 'Hide';
+            button.textContent = taskDetails.style.display === 'none' ? 'Details' : 'Hide';
         });
+        return button;
+    }
 
-        const subTaskUL = document.createElement('ul');
-        subTaskUL.className = 'sub-tasks';
-        todo.subTasks.forEach((subTask, subTaskIndex) => {
+    function createSubTaskList(subTasks, todoIndex) {
+        const ul = document.createElement('ul');
+        ul.className = 'sub-tasks';
+        subTasks.forEach((subTask, subTaskIndex) => {
             const subTaskLI = createSubTaskItem(subTask, todoIndex, subTaskIndex);
-            subTaskUL.appendChild(subTaskLI);
+            ul.appendChild(subTaskLI);
         });
+        return ul;
+    }
 
-        const addSubTaskButton = document.createElement('button');
-        addSubTaskButton.className = 'add-subtask-button';
-        addSubTaskButton.innerHTML = `
+    function createAddSubTaskButton(todoIndex) {
+        const button = document.createElement('button');
+        button.className = 'add-subtask-button';
+        button.innerHTML = `
             <svg fill="var(--secondary-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-120q-33 0-56.5-23.5T400-200v-160H240q-33 0-56.5-23.5T160-440q0-33 23.5-56.5T240-520h160v-160q0-33 23.5-56.5T480-760q33 0 56.5 23.5T560-680v160h160q33 0 56.5 23.5T800-440q0 33-23.5 56.5T720-360H560v160q0 33-23.5 56.5T480-120Z"/></svg>
         `;
-        addSubTaskButton.addEventListener('click', () => {
+        button.addEventListener('click', () => {
             const subTaskText = prompt('Enter sub-task:');
             if (subTaskText) {
                 allTodos[todoIndex].subTasks.push({ text: subTaskText, completed: false });
@@ -180,37 +246,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateTodoList();
             }
         });
-
-        todoLI.appendChild(todoHeader);
-        todoLI.appendChild(progressBarContainer);
-        todoLI.appendChild(taskDetails);
-        todoLI.appendChild(expandButton);
-        todoLI.appendChild(subTaskUL);
-        todoLI.appendChild(addSubTaskButton);
-
-        const deleteButton = todoLI.querySelector('.delete-button');
-        deleteButton.addEventListener('click', () => {
-            deleteTodoItem(todoIndex);
-        });
-
-        const checkbox = todoLI.querySelector('input');
-        checkbox.addEventListener('change', () => {
-            allTodos[todoIndex].completed = checkbox.checked;
-            allTodos[todoIndex].status = checkbox.checked ? 'done' : 'in-progress';
-            saveTodos();
-            updateProgressBar(todoIndex, progressBar, progressPercentage);
-        });
-
-        updateProgressBar(todoIndex, progressBar, progressPercentage);
-
-        return todoLI;
+        return button;
     }
 
     function createSubTaskItem(subTask, todoIndex, subTaskIndex) {
         const subTaskId = `subtask-${todoIndex}-${subTaskIndex}`;
-        const subTaskLI = document.createElement('li');
-        subTaskLI.className = 'sub-task';
-        subTaskLI.innerHTML = `
+        const li = document.createElement('li');
+        li.className = 'sub-task';
+        li.innerHTML = `
             <input type="checkbox" id="${subTaskId}" ${subTask.completed ? 'checked' : ''}>
             <label class="custom-checkbox" for="${subTaskId}">
                 <svg fill="transparent" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
@@ -221,21 +264,17 @@ document.addEventListener('DOMContentLoaded', () => {
             </button>
         `;
 
-        const deleteButton = subTaskLI.querySelector('.delete-button');
-        deleteButton.addEventListener('click', () => {
-            deleteSubTaskItem(todoIndex, subTaskIndex);
-        });
-
-        const checkbox = subTaskLI.querySelector('input');
-        checkbox.addEventListener('change', () => {
-            allTodos[todoIndex].subTasks[subTaskIndex].completed = checkbox.checked;
+        li.querySelector('.delete-button').addEventListener('click', () => deleteSubTaskItem(todoIndex, subTaskIndex));
+        li.querySelector('input').addEventListener('change', (e) => {
+            allTodos[todoIndex].subTasks[subTaskIndex].completed = e.target.checked;
             saveTodos();
             updateTodoList();
         });
 
-        return subTaskLI;
+        return li;
     }
 
+    /* === DATA MANAGEMENT === */
     function deleteTodoItem(todoIndex) {
         allTodos = allTodos.filter((_, i) => i !== todoIndex);
         saveTodos();
@@ -254,15 +293,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const progress = subTasks.length ? (completedSubTasks / subTasks.length) * 100 : (allTodos[todoIndex].completed ? 100 : 0);
         progressBar.style.width = `${progress}%`;
         progressPercentage.textContent = `${Math.round(progress)}%`;
-        if (progress < 25) {
-            progressBar.style.backgroundColor = 'red';
-        } else if (progress < 50) {
-            progressBar.style.backgroundColor = 'orange';
-        } else if (progress < 80) {
-            progressBar.style.backgroundColor = 'yellow';
-        } else {
-            progressBar.style.backgroundColor = 'green';
-        }
+        progressBar.style.backgroundColor = 
+            progress < 25 ? 'red' :
+            progress < 50 ? 'orange' :
+            progress < 80 ? 'yellow' : 'green';
     }
 
     function saveTodos() {
@@ -278,7 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const todos = localStorage.getItem('todos');
             const parsed = todos ? JSON.parse(todos) : [];
-            // Add missing fields to old todos
             return parsed.map(todo => ({
                 text: todo.text || '',
                 completed: todo.completed || false,

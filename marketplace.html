@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shop Aloha Mass Productions (AMP) apparel and accessories - shirts, hats, stickers, and more.">
-    <meta name="keywords" content="Aloha, AMP, apparel, Hawaiian culture, blockchain, NFT">
+    <meta name="description" content="Shop Aloha Mass Productions (AMP) apparel and accessories - premium Hawaiian shirts, hats, stickers, and exclusive bundles.">
+    <meta name="keywords" content="Aloha, AMP, apparel, Hawaiian clothing, streetwear, blockchain, NFT">
     <meta name="author" content="808CryptoBeast">
-    <title>AMP Marketplace</title>
+    <title>AMP Marketplace - Aloha Apparel</title>
     <link rel="stylesheet" href="marketplace.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400" rel="stylesheet">
-    <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="components/pics/AMP Tiki.ico" type="image/x-icon">
     <script src="sidebar.js" defer></script>
     <script src="marketplace.js" defer></script>
-    <!-- Stripe for traditional payments (placeholder) -->
+    <!-- Stripe for traditional payments -->
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
@@ -21,9 +19,7 @@
     <div id="sidebar" class="close">
         <ul>
             <li class="logo-button">
-                <a href="index.html" id="logo-toggle" class="logo">
-                    <img src="components/pics/AMP Tiki.jpg" alt="AMP Logo">
-                </a>
+                <a href="index.html" id="logo-toggle" class="logo"></a>
             </li>
             <li><a href="index.html#home" data-tooltip="Home"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></a></li>
             <li><a href="marketplace.html" data-tooltip="Shop"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zM7 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm5-14l6 6H6l6-6z"/></svg><span>Shop</span></a></li>
@@ -34,16 +30,26 @@
 
     <!-- Main Content -->
     <div class="content">
-        <!-- Marketplace Section -->
-        <section id="marketplace" class="marketplace container">
-            <h1>Shop Ke Aloha Collection</h1>
-            <!-- Featured Drops -->
+        <section id="marketplace" class="marketplace">
+            <!-- Promo Banner -->
+            <div class="promo-banner">
+                <h2>🌺 UNDER CONSTRUCTION 🌺</h2>
+            </div>
+            <h1>Ke Aloha Collection</h1>
+            <!-- Limited Drops -->
             <div class="drops">
-                <h2>Limited Drops</h2>
+                <h2>Limited Edition Drops</h2>
                 <div class="drop-item limited" data-id="4" data-price="49.99">
-                    <h3>Limited Edition Tiki Tee</h3>
-                    <p class="countdown" data-end="2025-04-01T00:00:00Z">Drop Ends In: <span></span></p>
+                    <img src="components/shirt-limited.jpg" alt="Limited Edition Tiki Tee">
+                    <h3>Limited Tiki Tee</h3>
+                    <p class="countdown" data-end="2025-04-01T00:00:00Z">Ends In: <span></span></p>
                     <p class="price">$49.99</p>
+                    <select class="size-select">
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                        <option value="XL">X-Large</option>
+                    </select>
                     <button class="pre-order cta-btn">Pre-Order Now</button>
                 </div>
             </div>
@@ -55,23 +61,29 @@
                 <button class="category-btn" data-category="stickers">Stickers</button>
                 <button class="category-btn" data-category="bundles">Bundles</button>
             </div>
-            <!-- Products -->
+            <!-- Product Grid -->
             <div class="product-grid">
-                <div class="product item" data-id="1" data-price="29.99" data-category="shirts">
+                <div class="product" data-id="1" data-price="29.99" data-category="shirts">
                     <img src="components/shirt1.jpg" alt="Aloha Shirt">
                     <h3>Aloha Shirt</h3>
                     <p class="price">$29.99</p>
                     <p class="stock">In Stock: <span>10</span></p>
+                    <select class="size-select">
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                        <option value="XL">X-Large</option>
+                    </select>
                     <button class="add-to-cart cta-btn">Add to Cart</button>
                 </div>
-                <div class="product item" data-id="2" data-price="19.99" data-category="hats">
+                <div class="product" data-id="2" data-price="19.99" data-category="hats">
                     <img src="components/hat1.jpg" alt="AMP Hat">
                     <h3>AMP Hat</h3>
                     <p class="price">$19.99</p>
                     <p class="stock">In Stock: <span>15</span></p>
                     <button class="add-to-cart cta-btn">Add to Cart</button>
                 </div>
-                <div class="product item" data-id="3" data-price="4.99" data-category="stickers">
+                <div class="product" data-id="3" data-price="4.99" data-category="stickers">
                     <img src="components/sticker1.jpg" alt="Aloha Sticker">
                     <h3>Aloha Sticker</h3>
                     <p class="price">$4.99</p>
@@ -83,7 +95,8 @@
             <div class="bundle-deals">
                 <h2>ʻOhana Bundles</h2>
                 <div class="bundle" data-id="bundle1" data-price="49.99" data-category="bundles">
-                    <p>Shirt + Hat Bundle - <span class="price">$49.99</span> (Save 10%)</p>
+                    <p>Shirt + Hat Bundle</p>
+                    <p class="price">$49.99 <span class="discount">(Save 10%)</span></p>
                     <button class="add-bundle cta-btn">Add Bundle</button>
                 </div>
             </div>
