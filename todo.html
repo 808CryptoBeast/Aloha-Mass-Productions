@@ -26,12 +26,30 @@
     <div class="content">
         <h1>TaskMaster</h1>
         <div class="wrapper">
-            <form>
-                <input id="todo-input" type="text" placeholder="Write anything and hit enter to add" autocomplete="off">
-                <button id="add-button">ADD</button>
+            <form id="todo-form">
+                <div class="form-main">
+                    <input id="todo-input" type="text" placeholder="Write anything and hit enter to add" autocomplete="off">
+                    <button id="add-button" type="submit">ADD</button>
+                </div>
+                <div class="form-details" style="display: none;">
+                    <textarea id="task-notes" placeholder="Add notes..."></textarea>
+                    <select id="task-priority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <input id="task-time" type="number" min="1" placeholder="Time (mins)">
+                    <select id="task-status">
+                        <option value="not-started">Not Started</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="done">Done</option>
+                    </select>
+                </div>
+                <button id="toggle-details" type="button">Show Details</button>
             </form>
             <div class="progress-bar">
                 <div class="progress"></div>
+                <span class="total-time">Total: 0 mins</span>
             </div>
             <ul id="todo-list">
                 <!-- Todo items will be dynamically added here -->
