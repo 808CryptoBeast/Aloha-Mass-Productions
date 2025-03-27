@@ -13,7 +13,7 @@
     <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
     <script src="sidebar.js" defer></script>
     <script src="marketplace.js" defer></script>
-    <!-- Stripe for traditional payments -->
+    <!-- Stripe for traditional payments (placeholder) -->
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
@@ -37,32 +37,41 @@
         <!-- Marketplace Section -->
         <section id="marketplace" class="marketplace container">
             <h1>Shop Ke Aloha Collection</h1>
+            <!-- Featured Drops -->
             <div class="drops">
+                <h2>Limited Drops</h2>
                 <div class="drop-item limited" data-id="4" data-price="49.99">
-                    <h2>Limited Edition Tiki Tee</h2>
+                    <h3>Limited Edition Tiki Tee</h3>
                     <p class="countdown" data-end="2025-04-01T00:00:00Z">Drop Ends In: <span></span></p>
                     <p class="price">$49.99</p>
-                    <button class="pre-order cta-btn">Pre-Order</button>
+                    <button class="pre-order cta-btn">Pre-Order Now</button>
                 </div>
             </div>
+            <!-- Categories -->
+            <div class="categories">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="shirts">Shirts</button>
+                <button class="category-btn" data-category="hats">Hats</button>
+                <button class="category-btn" data-category="stickers">Stickers</button>
+                <button class="category-btn" data-category="bundles">Bundles</button>
+            </div>
+            <!-- Products -->
             <div class="product-grid">
-                <div class="product item" data-id="1" data-price="29.99">
+                <div class="product item" data-id="1" data-price="29.99" data-category="shirts">
                     <img src="components/shirt1.jpg" alt="Aloha Shirt">
                     <h3>Aloha Shirt</h3>
                     <p class="price">$29.99</p>
                     <p class="stock">In Stock: <span>10</span></p>
-                    <button class="customize cta-btn">Customize</button>
                     <button class="add-to-cart cta-btn">Add to Cart</button>
                 </div>
-                <div class="product item" data-id="2" data-price="19.99">
+                <div class="product item" data-id="2" data-price="19.99" data-category="hats">
                     <img src="components/hat1.jpg" alt="AMP Hat">
                     <h3>AMP Hat</h3>
                     <p class="price">$19.99</p>
                     <p class="stock">In Stock: <span>15</span></p>
-                    <button class="customize cta-btn">Customize</button>
                     <button class="add-to-cart cta-btn">Add to Cart</button>
                 </div>
-                <div class="product item" data-id="3" data-price="4.99">
+                <div class="product item" data-id="3" data-price="4.99" data-category="stickers">
                     <img src="components/sticker1.jpg" alt="Aloha Sticker">
                     <h3>Aloha Sticker</h3>
                     <p class="price">$4.99</p>
@@ -70,33 +79,26 @@
                     <button class="add-to-cart cta-btn">Add to Cart</button>
                 </div>
             </div>
+            <!-- Bundles -->
             <div class="bundle-deals">
-                <h3>ʻOhana Bundles</h3>
-                <div class="bundle" data-id="bundle1" data-price="49.99">
+                <h2>ʻOhana Bundles</h2>
+                <div class="bundle" data-id="bundle1" data-price="49.99" data-category="bundles">
                     <p>Shirt + Hat Bundle - <span class="price">$49.99</span> (Save 10%)</p>
                     <button class="add-bundle cta-btn">Add Bundle</button>
                 </div>
             </div>
+            <!-- Cart -->
             <div id="cart" class="cart">
-                <h3>Kāu Kāleka (Your Cart)</h3>
+                <h2>Kāu Kāleka (Your Cart)</h2>
                 <ul id="cart-items"></ul>
-                <p>Total: <span id="cart-total">$0.00</span></p>
+                <p class="cart-total">Total: <span id="cart-total">$0.00</span></p>
                 <button id="checkout" class="cta-btn">Checkout</button>
                 <button id="clear-cart" class="cta-btn secondary">Clear Cart</button>
-                <div class="payment-options">
+                <div class="payment-options" style="display: none;">
                     <button id="stripe-pay" class="cta-btn">Pay with Card</button>
                     <button id="xrpl-pay" class="cta-btn">Pay with XRPL</button>
                 </div>
                 <div id="referral-link">Refer a friend: <a href="#">amp.aloha/ref123</a></div>
-            </div>
-            <div id="customize-modal" class="modal">
-                <div class="modal-content">
-                    <span class="close-modal">×</span>
-                    <h3> Your Design</h3>
-                    <canvas id="customize-canvas" width="300" height="300"></canvas>
-                    <input type="color" id="color-picker">
-                    <button id="save-custom" class="cta-btn">Save Design</button>
-                </div>
             </div>
         </section>
     </div>
