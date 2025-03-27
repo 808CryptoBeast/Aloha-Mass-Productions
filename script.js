@@ -8,10 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const rewardPoints = document.getElementById('reward-points');
     let points = parseInt(localStorage.getItem('rewardPoints')) || 0;
 
-    // Set initial reward points
     rewardPoints.textContent = points;
 
-    // Toggle Intro/Vision Section
     exploreBtn.addEventListener('click', (e) => {
         e.preventDefault();
         introVision.classList.add('visible');
@@ -21,13 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
         introVision.classList.remove('visible');
     });
 
-    // Toggle Sidebar Dropdown
     dropdownBtn.addEventListener('click', () => {
         subMenu.classList.toggle('show');
         dropdownBtn.classList.toggle('rotate');
     });
 
-    // Rewards Redemption
     redeemRewardsBtn.addEventListener('click', () => {
         if (points >= 100) {
             points -= 100;
