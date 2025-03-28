@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub Center - Ikeverse</title>
+    <link rel="stylesheet" href="sidebar.css"> <!-- Link to sidebar CSS file -->
+    <link rel="stylesheet" href="ikeverse.css"> <!-- Link to the new CSS file -->
+    <script src="sidebar.js" defer></script> <!-- Link to sidebar JS file -->
+</head>
+<body>
+    <div id="sidebar" class="close">
+        <ul>
+            <li class="logo-button">
+                <a href="#" id="logo-toggle" class="logo" aria-label="AMP Logo"></a>
+            </li>
+            <li><a href="profile.html" data-tooltip="Profile"><iconify-icon icon="fluent:person-32-filled" width="24" height="24"></iconify-icon><span>Profile</span></a></li>
+            <li><a href="ikeverse.html" data-tooltip="Ikeverse"><iconify-icon icon="fluent:book-open-24-filled" width="24" height="24"></iconify-icon><span>Ikeverse</span></a></li>
+            <li><a href="index.html#home" data-tooltip="Home"><iconify-icon icon="fluent:home-32-filled" width="24" height="24"></iconify-icon><span>Home</span></a></li>
+            <li><a href="todo.html" data-tooltip="ToDo"><iconify-icon icon="fluent:task-list-square-24-filled" width="24" height="24"></iconify-icon><span>ToDo</span></a></li>
+            <li><a href="about.html" data-tooltip="About"><iconify-icon icon="fluent:info-24-filled" width="24" height="24"></iconify-icon><span>About</span></a></li>
+            <li><a href="marketplace.html" data-tooltip="Marketplace"><iconify-icon icon="fluent:store-24-filled" width="24" height="24"></iconify-icon><span>Marketplace</span></a></li>
+            <!-- Add more links as needed -->
+        </ul>
+    </div>
+    <div id="main-content">
+        <header>
+            <h1>Learning Hub Center - Ikeverse</h1>
+            <input type="text" id="search-input" placeholder="Search courses...">
+        </header>
+        <section id="course-categories">
+            <h2>Course Categories</h2>
+            <div class="course-category">
+                <h3>Culture</h3>
+                <p>Learn about various cultures, traditions, and history.</p>
+                <button onclick="startCourse('Culture')">Start Course</button>
+            </div>
+            <div class="course-category">
+                <h3>Blockchain</h3>
+                <p>Introduction to blockchain technology, cryptocurrency, and smart contracts.</p>
+                <button onclick="startCourse('Blockchain')">Start Course</button>
+            </div>
+            <div class="course-category">
+                <h3>AI</h3>
+                <p>Courses on artificial intelligence, machine learning, and data science.</p>
+                <button onclick="startCourse('AI')">Start Course</button>
+            </div>
+            <div class="course-category">
+                <h3>Metaverses</h3>
+                <p>Introduction to virtual worlds and metaverse platforms.</p>
+                <button onclick="startCourse('Metaverses')">Start Course</button>
+            </div>
+            <!-- Add more categories as needed -->
+        </section>
+    </div>
+    <script src="ikeverse.js"></script> <!-- Link to the new JS file -->
+</body>
+</html>
