@@ -224,8 +224,8 @@ html {
 }
 
 .feature {
-    flex: 1 1 calc(20% - 1rem);
-    max-width: calc(20% - 1rem);
+    flex: 1 1 calc(25% - 1rem);
+    max-width: calc(25% - 1rem);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
     background-size: cover;
@@ -237,12 +237,14 @@ html {
     justify-content: flex-end;
     padding: 20px;
     filter: brightness(0.6);
+    overflow: hidden; 
 }
 
 .feature:hover {
-    transform: scale(1.05);
+    transform: scale(1.2); 
     box-shadow: var(--hover-glow);
     filter: brightness(1.2);
+    overflow: visible; 
 }
 
 .feature h3, .feature p {
@@ -250,6 +252,9 @@ html {
     background: rgba(0, 0, 0, 0.5);
     padding: 10px;
     border-radius: 10px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    text-align: center;
 }
 
 /* Rewards */
@@ -350,7 +355,7 @@ html {
 }
 
 .amplify .cta-btn {
-    border: 2px solid var(--secondary-text-clr); /* Fixed: Added 'solid' */
+    border: 2px solid var(--secondary-text-clr); 
     transition: background 0.3s ease, border-color 0.3s ease;
     margin-top: 10px;
 }
