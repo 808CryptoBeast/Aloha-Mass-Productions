@@ -124,7 +124,7 @@ html {
     border: 2px solid var(--sidebar-accent-clr);
     border-radius: 15px;
     transition: transform 200ms, box-shadow 200ms;
-    background-image: url('components/pics/AMP Tiki.jpg');
+    background-image: url('/components/pics/AMP\ Tiki.jpg');
     background-size: cover;
     background-position: center;
     box-sizing: border-box;

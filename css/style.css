@@ -224,7 +224,7 @@ form {
 
 #todo-input {
     box-sizing: border-box;
-    padding: 12px 100px 12px 20px;
+    padding: 12px 20px;
     width: 100%;
     background: var(--base-clr); /* Changed for readability */
     border: 2px solid var(--secondary-color);
@@ -232,6 +232,7 @@ form {
     font: inherit;
     color: var(--text-color); /* Fixed --text-clr */
     caret-color: var(--accent-color);
+    margin-right: -4px; /* Adjusted margin to make room for button border */
 }
 
 #todo-input:focus {
@@ -254,6 +255,7 @@ form {
     cursor: pointer;
     transition: background-color 0.3s ease;
     box-sizing: border-box;
+    line-height: calc(100% - 4px); /* Ensures text is vertically centered */
 }
 
 #add-button:hover {

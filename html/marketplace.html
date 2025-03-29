@@ -7,10 +7,10 @@
     <meta name="keywords" content="Aloha, AMP, apparel, Hawaiian clothing, streetwear, blockchain, NFT">
     <meta name="author" content="808CryptoBeast">
     <title>AMP Marketplace - Aloha Apparel</title>
-    <link rel="stylesheet" href="marketplace.css">
-    <link rel="icon" href="components/pics/AMP Tiki.ico" type="image/x-icon">
-    <script src="sidebar.js" defer></script>
-    <script src="marketplace.js" defer></script>
+    <link rel="stylesheet" href="/css/marketplace.css">
+    <link rel="icon" href="/components/pics/AMP Tiki.ico" type="image/x-icon">
+    <script src="/js/sidebar.js" defer></script>
+    <script src="/js/marketplace.js" defer></script>
     <!-- Stripe for traditional payments -->
     <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -19,12 +19,14 @@
     <div id="sidebar" class="close">
         <ul>
             <li class="logo-button">
-                <a href="index.html" id="logo-toggle" class="logo"></a>
+                <a href="/index.html" id="logo-toggle" class="logo"></a>
             </li>
-            <li><a href="index.html#home" data-tooltip="Home"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></a></li>
-            <li><a href="marketplace.html" data-tooltip="Shop"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zM7 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm5-14l6 6H6l6-6z"/></svg><span>Shop</span></a></li>
-            <li><a href="index.html#rewards" data-tooltip="Rewards"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93s3.05-7.44 7-7.93V17.93zm2-13.86c3.95.49 7 3.85 7 7.93s-3.05 7.44-7 7.93V4.07z"/></svg><span>Rewards</span></a></li>
-            <li><a href="index.html#contact" data-tooltip="Contact"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 8V7l-3 2-2-1-4 4-4-4-2 1-3-2v1L12 13l9-5z"/></svg><span>Contact</span></a></li>
+            <li><a href="/index.html#home" data-tooltip="Home"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span>Home</span></a></li>
+            <li><a href="/html/marketplace.html" data-tooltip="Shop"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zM7 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm5-14l6 6H6l6-6z"/></svg><span>Shop</span></a></li>
+            <li><a href="/index.html#rewards" data-tooltip="Rewards"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93s3.05-7.44 7-7.93V17.93zm2-13.86c3.95.49 7 3.85 7 7.93s-3.05 7.44-7 7.93V4.07z"/></svg><span>Rewards</span></a></li>
+            <li><a href="/html/todo.html" data-tooltip="Todo"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-8-1h2v-6h-2v6zm0-8h2V7h-2v2zM7 15h2v-4H7v4zm8 0h2v-2h-2v2z"/></svg><span>Todo</span></a></li>
+            <li><a href="/html/ikeverse.html" data-tooltip="Ikeverse"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-8-1h2v-6h-2v6zm0-8h2V7h-2v2zM7 15h2v-4H7v4zm8 0h2v-2h-2v2z"/></svg><span>Ikeverse</span></a></li>
+            <li><a href="/index.html#contact" data-tooltip="Contact"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 8V7l-3 2-2-1-4 4-4-4-2 1-3-2v1L12 13l9-5z"/></svg><span>Contact</span></a></li>
         </ul>
     </div>
 
@@ -40,7 +42,7 @@
             <div class="drops">
                 <h2>Limited Edition Drops</h2>
                 <div class="drop-item limited" data-id="4" data-price="49.99">
-                    <img src="components/shirt-limited.jpg" alt="Limited Edition Tiki Tee">
+                    <img src="/components/shirt-limited.jpg" alt="Limited Edition Tiki Tee">
                     <h3>Limited Tiki Tee</h3>
                     <p class="countdown" data-end="2025-04-01T00:00:00Z">Ends In: <span></span></p>
                     <p class="price">$49.99</p>
@@ -64,7 +66,7 @@
             <!-- Product Grid -->
             <div class="product-grid">
                 <div class="product" data-id="1" data-price="29.99" data-category="shirts">
-                    <img src="components/shirt1.jpg" alt="Aloha Shirt">
+                    <img src="/components/shirt1.jpg" alt="Aloha Shirt">
                     <h3>Aloha Shirt</h3>
                     <p class="price">$29.99</p>
                     <p class="stock">In Stock: <span>10</span></p>
@@ -77,14 +79,14 @@
                     <button class="add-to-cart cta-btn">Add to Cart</button>
                 </div>
                 <div class="product" data-id="2" data-price="19.99" data-category="hats">
-                    <img src="components/hat1.jpg" alt="AMP Hat">
+                    <img src="/components/hat1.jpg" alt="AMP Hat">
                     <h3>AMP Hat</h3>
                     <p class="price">$19.99</p>
                     <p class="stock">In Stock: <span>15</span></p>
                     <button class="add-to-cart cta-btn">Add to Cart</button>
                 </div>
                 <div class="product" data-id="3" data-price="4.99" data-category="stickers">
-                    <img src="components/sticker1.jpg" alt="Aloha Sticker">
+                    <img src="/components/sticker1.jpg" alt="Aloha Sticker">
                     <h3>Aloha Sticker</h3>
                     <p class="price">$4.99</p>
                     <p class="stock">In Stock: <span>50</span></p>
