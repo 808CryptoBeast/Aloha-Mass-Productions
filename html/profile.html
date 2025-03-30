@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile | AMP</title>
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Icon Library -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+    <!-- XRPL SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/xrpl@2.7.0/build/xrpl-latest-min.js"></script>
+    <!-- Scripts -->
+    <script src="/js/sidebar.js" defer></script>
+    <script src="/js/profile.js" type="module" defer></script>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div id="sidebar" class="close">
+        <ul>
+            <li class="logo-button">
+                <a href="#" id="logo-toggle" class="logo" aria-label="AMP Logo"></a>
+            </li>
+            <li>
+                <a href="/index.html#home" data-tooltip="Home">
+                    <iconify-icon icon="fluent:home-32-filled"></iconify-icon>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <button class="dropdown-btn" data-tooltip="About">
+                    <iconify-icon icon="fluent:people-team-32-filled"></iconify-icon>
+                    <span>About</span>
+                    <iconify-icon icon="fluent:chevron-down-20-filled"></iconify-icon>
+                </button>
+                <div class="sub-menu">
+                    <div>
+                        <a href="/index.html#about-us">About Us</a>
+                        <a href="/index.html#team">Team</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="/index.html#services" data-tooltip="Services">
+                    <iconify-icon icon="fluent:person-available-24-filled"></iconify-icon>
+                    <span>Services</span>
+                </a>
+            </li>
+            <li>
+                <a href="/html/marketplace.html" data-tooltip="Marketplace">
+                    <iconify-icon icon="fluent:building-store-24-filled"></iconify-icon>
+                    <span>Marketplace</span>
+                </a>
+            </li>
+            <li>
+                <a href="/index.html#rewards" data-tooltip="Rewards">
+                    <iconify-icon icon="fluent:clipboard-text-edit-32-filled"></iconify-icon>
+                    <span>Rewards</span>
+                </a>
+            </li>
+            <li>
+                <a href="/html/todo.html" data-tooltip="ToDo">
+                    <iconify-icon icon="fluent:task-list-square-24-filled"></iconify-icon>
+                    <span>ToDo</span>
+                </a>
+            </li>
+            <li>
+                <a href="/html/ikeverse.html" data-tooltip="Ikeverse">
+                    <iconify-icon icon="fluent:book-open-24-filled"></iconify-icon>
+                    <span>Ikeverse</span>
+                </a>
+            </li>
+            <li>
+                <a href="/index.html#contact" data-tooltip="Contact">
+                    <iconify-icon icon="fluent:send-48-filled"></iconify-icon>
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <iconify-icon icon="fluent:dark-theme-24-filled" class="dark-icon"></iconify-icon>
+        <iconify-icon icon="fluent:light-theme-24-filled" class="light-icon"></iconify-icon>
+    </button>
+
+    <!-- Main Profile Content -->
+    <div class="content profile-content">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner"></div>
+            <p>Loading your profile...</p>
+        </div>
+
+        <!-- Profile Header (Loaded Dynamically) -->
+        <div id="profile-header" class="profile-header" style="display: none;">
+            <!-- Content loaded from JS -->
+        </div>
+
+        <div class="profile-body">
+            <nav class="profile-nav">
+                <button class="nav-btn active" data-section="overview">
+                    <iconify-icon icon="fluent:person-board-24-filled"></iconify-icon>
+                    <span>Overview</span>
+                </button>
+                <button class="nav-btn" data-section="learning">
+                    <iconify-icon icon="fluent:learning-app-24-filled"></iconify-icon>
+                    <span>Learning</span>
+                </button>
+                <button class="nav-btn" data-section="wallet">
+                    <iconify-icon icon="fluent:wallet-credit-card-24-filled"></iconify-icon>
+                    <span>Wallet</span>
+                </button>
+                <button class="nav-btn" data-section="achievements">
+                    <iconify-icon icon="fluent:medal-24-filled"></iconify-icon>
+                    <span>Achievements</span>
+                </button>
+                <button class="nav-btn" data-section="community">
+                    <iconify-icon icon="fluent:people-community-24-filled"></iconify-icon>
+                    <span>Community</span>
+                </button>
+            </nav>
+
+            <div class="profile-sections">
+                <!-- Overview Section -->
+                <section id="overview-section" class="profile-section active">
+                    <div class="overview-content">
+                        <div class="personal-intro">
+                            <h2>Personal Introduction</h2>
+                            <div class="intro-text" id="intro-text">
+                                <!-- Loaded dynamically -->
+                            </div>
+                            <button id="edit-intro-btn" class="edit-btn">
+                                <iconify-icon icon="fluent:edit-24-filled"></iconify-icon>
+                                Edit Introduction
+                            </button>
+                        </div>
+                        
+                        <div class="personal-details">
+                            <h2>Personal Details</h2>
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <iconify-icon icon="fluent:calendar-24-filled"></iconify-icon>
+                                    <div>
+                                        <h3>Member Since</h3>
+                                        <p id="member-since">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="detail-item">
+                                    <iconify-icon icon="fluent:location-24-filled"></iconify-icon>
+                                    <div>
+                                        <h3>Location</h3>
+                                        <p id="user-location">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="detail-item">
+                                    <iconify-icon icon="fluent:briefcase-24-filled"></iconify-icon>
+                                    <div>
+                                        <h3>Occupation</h3>
+                                        <p id="user-occupation">Loading...</p>
+                                    </div>
+                                </div>
+                                <div class="detail-item">
+                                    <iconify-icon icon="fluent:heart-24-filled"></iconify-icon>
+                                    <div>
+                                        <h3>Interests</h3>
+                                        <p id="user-interests">Loading...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button id="edit-details-btn" class="edit-btn">
+                                <iconify-icon icon="fluent:edit-24-filled"></iconify-icon>
+                                Edit Details
+                            </button>
+                        </div>
+                        
+                        <div class="recent-activity">
+                            <h2>Recent Activity</h2>
+                            <div class="activity-list" id="recent-activity-list">
+                                <!-- Loaded dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Learning Section -->
+                <section id="learning-section" class="profile-section">
+                    <div class="learning-content">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </section>
+
+                <!-- Wallet Section -->
+                <section id="wallet-section" class="profile-section">
+                    <div class="wallet-content">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </section>
+
+                <!-- Achievements Section -->
+                <section id="achievements-section" class="profile-section">
+                    <div class="achievements-content">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </section>
+
+                <!-- Community Section -->
+                <section id="community-section" class="profile-section">
+                    <div class="community-content">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Modals -->
+    <!-- Edit Intro Modal -->
+    <div id="intro-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Introduction</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="intro-edit-textarea" class="edit-textarea" placeholder="Tell the community about yourself..."></textarea>
+                <div class="formatting-tools">
+                    <button data-format="bold" title="Bold"><iconify-icon icon="fluent:text-bold-24-filled"></iconify-icon></button>
+                    <button data-format="italic" title="Italic"><iconify-icon icon="fluent:text-italic-24-filled"></iconify-icon></button>
+                    <button data-format="link" title="Link"><iconify-icon icon="fluent:link-24-filled"></iconify-icon></button>
+                    <button data-format="list" title="List"><iconify-icon icon="fluent:text-bullet-list-24-filled"></iconify-icon></button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-intro-edit" class="btn-secondary">Cancel</button>
+                <button id="save-intro-edit" class="btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Details Modal -->
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Personal Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="details-form">
+                    <div class="form-group">
+                        <label for="edit-location">Location</label>
+                        <input type="text" id="edit-location" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-occupation">Occupation</label>
+                        <input type="text" id="edit-occupation" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-interests">Interests (comma separated)</label>
+                        <input type="text" id="edit-interests" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-website">Website</label>
+                        <input type="url" id="edit-website" class="form-input">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-details-edit" class="btn-secondary">Cancel</button>
+                <button id="save-details-edit" class="btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Verification Modal -->
+    <div id="security-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Verify Your Identity</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>For security reasons, please enter your password to continue:</p>
+                <form id="security-form">
+                    <div class="form-group">
+                        <label for="verify-password">Password</label>
+                        <div class="password-input-container">
+                            <input type="password" id="verify-password" class="form-input" required>
+                            <button type="button" id="toggle-password" class="toggle-password">
+                                <iconify-icon icon="fluent:eye-24-filled"></iconify-icon>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-verification" class="btn-secondary">Cancel</button>
+                <button id="confirm-verification" class="btn-primary">Verify</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Picture Upload Modal -->
+    <div id="profile-pic-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Update Profile Picture</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-options">
+                    <button id="take-photo-btn" class="upload-option-btn">
+                        <iconify-icon icon="fluent:camera-24-filled"></iconify-icon>
+                        <span>Take Photo</span>
+                    </button>
+                    <button id="choose-photo-btn" class="upload-option-btn">
+                        <iconify-icon icon="fluent:image-24-filled"></iconify-icon>
+                        <span>Choose from Library</span>
+                    </button>
+                </div>
+                <div class="image-preview-container">
+                    <div id="profile-pic-preview" class="image-preview">
+                        <img id="profile-pic-preview-img" src="" alt="Profile picture preview">
+                    </div>
+                    <div class="preview-actions">
+                        <button id="rotate-left-btn" class="preview-action-btn">
+                            <iconify-icon icon="fluent:arrow-rotate-counterclockwise-24-filled"></iconify-icon>
+                        </button>
+                        <button id="rotate-right-btn" class="preview-action-btn">
+                            <iconify-icon icon="fluent:arrow-rotate-clockwise-24-filled"></iconify-icon>
+                        </button>
+                        <button id="crop-btn" class="preview-action-btn">
+                            <iconify-icon icon="fluent:crop-24-filled"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-profile-pic" class="btn-secondary">Cancel</button>
+                <button id="save-profile-pic" class="btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cover Photo Upload Modal -->
+    <div id="cover-photo-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Update Cover Photo</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-options">
+                    <button id="take-cover-photo-btn" class="upload-option-btn">
+                        <iconify-icon icon="fluent:camera-24-filled"></iconify-icon>
+                        <span>Take Photo</span>
+                    </button>
+                    <button id="choose-cover-photo-btn" class="upload-option-btn">
+                        <iconify-icon icon="fluent:image-24-filled"></iconify-icon>
+                        <span>Choose from Library</span>
+                    </button>
+                </div>
+                <div class="image-preview-container">
+                    <div id="cover-photo-preview" class="image-preview">
+                        <img id="cover-photo-preview-img" src="" alt="Cover photo preview">
+                    </div>
+                    <div class="preview-actions">
+                        <button id="cover-rotate-left-btn" class="preview-action-btn">
+                            <iconify-icon icon="fluent:arrow-rotate-counterclockwise-24-filled"></iconify-icon>
+                        </button>
+                        <button id="cover-rotate-right-btn" class="preview-action-btn">
+                            <iconify-icon icon="fluent:arrow-rotate-clockwise-24-filled"></iconify-icon>
+                        </button>
+                        <button id="cover-crop-btn" class="preview-action-btn">
+                            <iconify-icon icon="fluent:crop-24-filled"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-cover-photo" class="btn-secondary">Cancel</button>
+                <button id="save-cover-photo" class="btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cropping Tool Modal -->
+    <div id="crop-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Crop Image</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="crop-container" class="crop-container"></div>
+                <div class="crop-aspect-ratios">
+                    <button data-ratio="1" class="aspect-ratio-btn active">Square (1:1)</button>
+                    <button data-ratio="1.777" class="aspect-ratio-btn">Wide (16:9)</button>
+                    <button data-ratio="0.5625" class="aspect-ratio-btn">Tall (9:16)</button>
+                    <button data-ratio="free" class="aspect-ratio-btn">Free</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-crop" class="btn-secondary">Cancel</button>
+                <button id="apply-crop" class="btn-primary">Apply Crop</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+</body>
+</html>
