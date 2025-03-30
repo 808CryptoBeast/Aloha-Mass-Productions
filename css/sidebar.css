@@ -1,5 +1,3 @@
-/* sidebar.css */
-
 /* === ROOT VARIABLES === */
 :root {
   --primary-color: #ff6600;
@@ -9,6 +7,21 @@
   --sidebar-accent-clr: var(--primary-color);
   --text-clr: #fff;
   --hover-glow: 0 0 10px #00FFC4, 0 0 20px #00FFC4, 0 0 30px #00FFC4;
+  --icon-size: 24px;
+  --icon-size-collapsed: 20px;
+}
+
+/* === BASE STYLES === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--base-clr);
+  color: var(--text-clr);
 }
 
 /* === SIDEBAR === */
@@ -21,12 +34,11 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: width 300ms ease-in-out;
+  transition: width 300ms ease, padding 300ms ease;
   overflow: hidden;
-  text-wrap: nowrap;
+  white-space: nowrap;
   display: flex;
   flex-direction: column;
-  align-items: center;
   z-index: 1000;
 }
 
@@ -48,22 +60,17 @@
   margin-bottom: 16px;
 }
 
-#sidebar ul li.active a {
-  color: var(--sidebar-accent-clr);
-}
-
-#sidebar ul li.active a iconify-icon {
-  filter: brightness(0) saturate(100%) hue-rotate(20deg); /* Optional: Adjust for active state */
-}
-
-#sidebar a, #sidebar .dropdown-btn {
-  border-radius: .5em;
-  padding: .85em;
+/* === NAV ITEMS === */
+#sidebar a, 
+#sidebar .dropdown-btn {
+  border-radius: 0.5em;
+  padding: 0.85em;
   text-decoration: none;
   color: var(--text-clr);
   display: flex;
   align-items: center;
   gap: 1em;
+  transition: background-color 0.2s ease;
 }
 
 .dropdown-btn {
@@ -75,27 +82,64 @@
   cursor: pointer;
 }
 
+/* === ICON STYLES === */
 #sidebar iconify-icon {
   flex-shrink: 0;
-  /* Removed color: var(--text-clr) to preserve original colors */
+  width: var(--icon-size);
+  height: var(--icon-size);
+  color: unset; /* Allows colored icons to show naturally */
+  transition: transform 0.2s ease;
 }
 
-#sidebar a span, #sidebar .dropdown-btn span {
+#sidebar.close iconify-icon {
+  width: var(--icon-size-collapsed);
+  height: var(--icon-size-collapsed);
+  margin: 0 auto;
+}
+
+/* Chevron icon specific styles */
+.dropdown-btn iconify-icon:last-child {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.rotate iconify-icon:last-child {
+  transform: rotate(180deg);
+}
+
+/* === TEXT & STATES === */
+#sidebar a span, 
+#sidebar .dropdown-btn span {
   flex-grow: 1;
+  transition: opacity 0.2s ease;
 }
 
-#sidebar.close a span, #sidebar.close .dropdown-btn span {
-  display: none;
+#sidebar.close a span, 
+#sidebar.close .dropdown-btn span {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
-#sidebar a:hover, #sidebar .dropdown-btn:hover {
+#sidebar ul li.active a {
+  color: var(--sidebar-accent-clr);
+}
+
+#sidebar ul li.active iconify-icon {
+  color: var(--sidebar-accent-clr) !important;
+}
+
+#sidebar a:hover, 
+#sidebar .dropdown-btn:hover {
   background-color: var(--hover-clr);
 }
 
+/* === DROPDOWN MENU === */
 #sidebar .sub-menu {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 300ms ease-in-out;
+  transition: grid-template-rows 300ms ease;
 }
 
 #sidebar .sub-menu > div {
@@ -106,18 +150,11 @@
   grid-template-rows: 1fr;
 }
 
-.dropdown-btn iconify-icon:last-child {
-  transition: transform 200ms ease;
-}
-
-.rotate iconify-icon:last-child {
-  transform: rotate(180deg);
-}
-
 #sidebar .sub-menu a {
-  padding-left: 2em;
+  padding-left: 3em;
 }
 
+/* === LOGO === */
 #sidebar .logo-button {
   width: 100%;
   display: flex;
@@ -136,7 +173,6 @@
   background-image: url('/components/pics/AMP\ Tiki.jpg');
   background-size: cover;
   background-position: center;
-  box-sizing: border-box;
 }
 
 #sidebar .logo-button:hover a.logo {
@@ -144,11 +180,12 @@
   box-shadow: var(--hover-glow);
 }
 
-/* Tooltip for Icons */
-#sidebar ul li a::before, #sidebar ul li .dropdown-btn::before {
+/* === TOOLTIPS === */
+#sidebar ul li a::before, 
+#sidebar ul li .dropdown-btn::before {
   content: attr(data-tooltip);
   position: absolute;
-  background-color: var(--dark-bg);
+  background-color: var(--base-clr);
   color: var(--text-clr);
   padding: 5px 10px;
   border-radius: 5px;
@@ -156,19 +193,21 @@
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease;
   z-index: 1001;
   left: 70px;
   top: 50%;
   transform: translateY(-50%);
+  pointer-events: none;
 }
 
-#sidebar.close ul li a:hover::before, #sidebar.close ul li .dropdown-btn:hover::before {
+#sidebar.close ul li a:hover::before, 
+#sidebar.close ul li .dropdown-btn:hover::before {
   opacity: 1;
   visibility: visible;
 }
 
-/* === MEDIA QUERIES === */
+/* === MOBILE RESPONSIVE === */
 @media (max-width: 800px) {
   #sidebar {
       height: 60px;
@@ -180,30 +219,39 @@
       top: unset;
       bottom: 0;
   }
+  
   #sidebar.close {
       width: 100%;
   }
+  
   #sidebar > ul {
       padding: 0;
       display: grid;
       grid-auto-columns: 60px;
       grid-auto-flow: column;
       align-items: center;
-      overflow-x: scroll;
+      overflow-x: auto;
   }
+  
   #sidebar ul li {
       height: 100%;
   }
-  #sidebar ul a, #sidebar ul .dropdown-btn {
+  
+  #sidebar ul a, 
+  #sidebar ul .dropdown-btn {
       width: 60px;
       height: 60px;
       padding: 0;
       border-radius: 0;
       justify-content: center;
   }
-  #sidebar ul li span, #sidebar ul li:first-child, #sidebar .dropdown-btn iconify-icon:last-child {
+  
+  #sidebar ul li span, 
+  #sidebar ul li:first-child, 
+  #sidebar .dropdown-btn iconify-icon:last-child {
       display: none;
   }
+  
   #sidebar .sub-menu.show {
       position: fixed;
       bottom: 60px;
@@ -215,10 +263,12 @@
       display: flex;
       justify-content: center;
   }
+  
   #sidebar .sub-menu.show > div {
       overflow-x: auto;
       display: flex;
   }
+  
   #sidebar .sub-menu a {
       padding: 1em;
       width: auto;

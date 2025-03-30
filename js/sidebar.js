@@ -1,18 +1,28 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const sidebar = document.getElementById('sidebar');
-  const logoToggle = document.getElementById('logo-toggle');
 
-  logoToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      sidebar.classList.toggle('close');
-  });
+// Toggle sidebar
+document.getElementById('logo-toggle').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('sidebar').classList.toggle('close');
+});
 
-  const dropdownButtons = document.querySelectorAll('.dropdown-btn');
-  dropdownButtons.forEach(button => {
-      button.addEventListener('click', () => {
-          const subMenu = button.nextElementSibling;
-          subMenu.classList.toggle('show');
-          button.classList.toggle('rotate');
-      });
-  });
+// Dropdown functionality
+const dropdownBtns = document.querySelectorAll('.dropdown-btn');
+dropdownBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        this.classList.toggle('rotate');
+        const subMenu = this.nextElementSibling;
+        subMenu.classList.toggle('show');
+    });
+});
+
+// Close dropdown when clicking elsewhere
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown-btn')) {
+        document.querySelectorAll('.sub-menu').forEach(menu => {
+            menu.classList.remove('show');
+        });
+        document.querySelectorAll('.dropdown-btn').forEach(btn => {
+            btn.classList.remove('rotate');
+        });
+    }
 });

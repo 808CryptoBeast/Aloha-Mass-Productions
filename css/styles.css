@@ -224,7 +224,7 @@ html {
 }
 
 .feature {
-    position: relative; /* Ensure that z-index works as expected */
+    position: relative; 
     z-index: 1;
     flex: 1 1 calc(25% - 1rem);
     max-width: calc(25% - 1rem);
@@ -236,12 +236,12 @@ html {
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center the content vertically */
+    justify-content: center; 
     align-items: center;
     padding: 20px;
     filter: brightness(0.6);
     overflow: hidden; 
-    box-sizing: border-box; /* Ensure padding is included in the element's width and height */
+    box-sizing: border-box; 
 }
 
 .feature:hover {
@@ -252,18 +252,18 @@ html {
 }
 
 .feature h3, .feature p {
-    position: relative; /* Ensure that z-index works as expected */
-    z-index: 2; /* Ensure text has a higher z-index than the feature item */
+    position: relative; 
+    z-index: 2; 
     margin: 0;
-    background: rgba(0, 0, 0, 0.5); /* Ensure background is semi-transparent */
+    background: rgba(0, 0, 0, 0.5); 
     padding: 10px;
     border-radius: 10px;
     word-wrap: break-word; 
     overflow-wrap: break-word; 
     text-align: center;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Optional: Improve text readability */
-    max-width: calc(100% - 1.0rem); /* Ensure text background stays within the feature item */
-    box-sizing: border-box; /* Ensure padding is included in the element's width and height */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+    max-width: calc(100% - 1.0rem); 
+    box-sizing: border-box; 
 }
 
 /* Background images for each feature item */
