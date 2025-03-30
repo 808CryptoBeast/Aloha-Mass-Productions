@@ -57,7 +57,7 @@ html {
 /* Hero Section */
 .hero {
     height: 60vh;
-    background: url('/components/AMP\ Rabbit\ Island.jpg') center/contain no-repeat;
+    background: url('/components/AMP/RabbitIsland.jpg') center/contain no-repeat;
     background-size: 80% auto;
     display: flex;
     justify-content: center;
